@@ -249,3 +249,14 @@ Você já tem:
 
 👉 Isso já é praticamente um **mini servidor web embarcado (IoT real)**
 -->
+## 📷 Imagens do Projeto
+
+<p align="center">
+  <img src="images/vscode.jpg" width="45%" />
+  <img src="images/arduino_ide.jpg" width="45%" />
+</p>
+
+<p align="center">
+  <img src="images/roteador.jpg" width="45%" />
+  <img src="images/smartphone.jpg" width="45%" />
+</p>

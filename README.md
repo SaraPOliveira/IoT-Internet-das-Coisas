@@ -114,7 +114,7 @@ Foi utilizado um aplicativo de ping para testar a comunicação:
 </p>
 
 ---
-
+<!--
 ## Melhorias Futuras
 
 - Adicionar sensores IoT  
@@ -123,6 +123,7 @@ Foi utilizado um aplicativo de ping para testar a comunicação:
 - Integração com API  
 
 ---
+-->
 
 ## Servidor Web com Arduino
 
@@ -227,7 +228,7 @@ Durante o desenvolvimento, foram abordados:
 - Arduino IDE  
 
 ---
-
+<!--
 ## Próximos Passos do Projeto
 
 - Criar páginas HTML mais interativas  
@@ -247,4 +248,4 @@ Você já tem:
 - ✅ Rede configurada com IP reservado  
 
 👉 Isso já é praticamente um **mini servidor web embarcado (IoT real)**
-
+-->

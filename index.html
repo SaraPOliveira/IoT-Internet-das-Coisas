@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IoT Arduino Ethernet - Controle Web</title>
+
+<style>
+:root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --text: #e6edf3;
+    --primary: #58a6ff;
+    --green: #2ea043;
+    --red: #da3633;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--card);
+}
+
+header h1 {
+    color: var(--primary);
+}
+
+nav {
+    text-align: center;
+    padding: 10px;
+    background: #010409;
+    position: sticky;
+    top: 0;
+}
+
+nav a {
+    color: var(--primary);
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section {
+    max-width: 1000px;
+    margin: 20px auto;
+    background: var(--card);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #30363d;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: var(--green);
+}
+
+.code {
+    background: #010409;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 12px;
+}
+
+img {
+    width: 100%;
+    max-width: 500px;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+.gallery {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #8b949e;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>📡 IoT com Arduino Ethernet</h1>
+<p><strong>Sara Oliveira • Nicolas Lopes • Anna Júlia</strong></p>
+<p>Projeto de Redes de Computadores</p>
+</header>
+
+<nav>
+<a href="#sobre">Sobre</a>
+<a href="#objetivo">Objetivo</a>
+<a href="#componentes">Componentes</a>
+<a href="#rede">Rede</a>
+<a href="#codigo">Código</a>
+<a href="#imagens">Imagens</a>
+<a href="#seguranca">Segurança</a>
+</nav>
+
+<section id="sobre">
+<h2>📌 Sobre o Projeto</h2>
+<p>
+Projeto IoT utilizando Arduino com Ethernet Shield para comunicação em rede local,
+funcionando como servidor web e permitindo controle de dispositivos físicos via navegador.
+</p>
+</section>
+
+<section id="objetivo">
+<h2>🎯 Objetivos</h2>
+<ul>
+<li>Conectar Arduino à rede</li>
+<li>Configurar IP fixo no Arduino</li>
+<li>Criar servidor HTTP</li>
+<li>Controlar LEDs remotamente</li>
+<li>Testar conectividade via Ping</li>
+</ul>
+</section>
+
+<section id="componentes">
+<h2>🔧 Componentes</h2>
+<ul>
+<li>Arduino UNO</li>
+<li>Ethernet Shield (W5100)</li>
+<li>Roteador</li>
+<li>2 Cabos Ethernet</li>
+<li>Smartphone com app de Ping</li>
+</ul>
+</section>
+
+<section id="rede">
+<h2>🌐 Configuração de Rede</h2>
+
+<table>
+<tr><th>Parâmetro</th><th>Valor</th></tr>
+<tr><td>IP</td><td>192.168.0.122</td></tr>
+<tr><td>Gateway</td><td>192.168.0.1</td></tr>
+<tr><td>Máscara</td><td>255.255.255.0</td></tr>
+<tr><td>Porta</td><td>80</td></tr>
+</table>
+
+<p>✔ Comunicação validada via Ping (latência média de 3ms a 13ms)</p>
+</section>
+
+<section id="codigo">
+<h2>💻 Código Arduino</h2>
+
+<div class="code">
+<pre>
+#include &lt;SPI.h&gt;
+#include &lt;Ethernet.h&gt;
+
+#define led1 8
+#define led2 9
+
+byte mac[] = { 0x90, 0xA2, 0xDA, 0xB6, 0x25, 0x3A };
+EthernetServer server(80);
+
+void setup() {
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+
+  Serial.begin(9600);
+
+  IPAddress ip(192,168,0,122);
+  Ethernet.begin(mac, ip);
+  server.begin();
+
+  Serial.print("IP: ");
+  Serial.println(Ethernet.localIP());
+}
+
+void loop() {
+  EthernetClient client = server.available();
+
+  if (client) {
+    String request = "";
+
+    while (client.connected()) {
+      if (client.available()) {
+        char c = client.read();
+        request += c;
+        if (c == '\n') break;
+      }
+    }
+
+    if (request.indexOf("led1-on") >= 0) digitalWrite(led1, HIGH);
+    if (request.indexOf("led1-off") >= 0) digitalWrite(led1, LOW);
+    if (request.indexOf("led2-on") >= 0) digitalWrite(led2, HIGH);
+    if (request.indexOf("led2-off") >= 0) digitalWrite(led2, LOW);
+
+    client.println("HTTP/1.1 200 OK");
+    client.println("Content-Type: text/html");
+    client.println();
+    client.println("&lt;h1&gt;Arduino IoT&lt;/h1&gt;");
+
+    client.stop();
+  }
+}
+</pre>
+</div>
+
+</section>
+
+<section id="imagens">
+<h2>📷 Imagens do Projeto</h2>
+
+<div class="gallery">
+<h3>Hardware Real</h3>
+<img src="Mídia.jpg">
+<img src="arduino.jpg">
+<img src="arduino2.jpg">
+<img src="arduino3.jpg">
+<img src="modelo-arduino.jpg">
+<img src="codigo.jpg">
+<img src="sharedimage.jpg">
+</div>
+
+</section>
+
+<!-- NOVA SEÇÃO ADICIONADA -->
+<section>
+<h2>📡 Testes Realizados</h2>
+<ul>
+<li>Ping realizado via smartphone</li>
+<li>Latência média: 3ms a 13ms</li>
+<li>Comunicação estável na rede local</li>
+<li>Acesso via navegador funcionando</li>
+</ul>
+</section>
+
+<section id="seguranca">
+<h2>🔐 Segurança</h2>
+<ul>
+<li>Sem autenticação (rede local)</li>
+<li>Firewall do roteador protege acesso externo</li>
+<li>Uso de DMZ pode expor o dispositivo</li>
+</ul>
+</section>
+
+<section>
+<h2>🚀 Conclusão</h2>
+<p>
+O projeto demonstrou na prática a integração entre hardware e rede,
+permitindo controle remoto via navegador e validando conceitos reais de IoT.
+</p>
+</section>
+
+<footer>
+<p>Projeto acadêmico • 2026</p>
+</footer>
+
+</body>
+</html>

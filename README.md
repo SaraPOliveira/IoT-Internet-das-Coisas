@@ -100,7 +100,7 @@ Este projeto demonstra a aplicação prática de conceitos de redes e IoT, utili
 ### 🔹 Teste de Ping
 
 <p align="center">
-<img src="/images/sharedimage.jpg" width="600">
+<img src="/images/sharedimage.jpg" width="500">
 </p>
 
 ---

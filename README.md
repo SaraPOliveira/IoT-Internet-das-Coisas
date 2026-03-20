@@ -82,25 +82,25 @@ Este projeto demonstra a aplicação prática de conceitos de redes e IoT, utili
 ### 🔹 Hardware
 
 <p align="center">
-<img src="arduino2.jpg" width="600" height="800">
+<img src="/images/arduino2.jpg" width="600" height="800">
 </p>
 
 ### 🔹 Montagem
 
 <p align="center">
-<img src="modelo-arduino.jpg" width="600">
+<img src="/images/modelo-arduino.jpg" width="600">
 </p>
 
 ### 🔹 Código
 
 <p align="center">
-<img src="codigo.jpg" width="600">
+<img src="/images/codigo.jpg" width="600">
 </p>
 
 ### 🔹 Teste de Ping
 
 <p align="center">
-<img src="sharedimage.jpg" width="600">
+<img src="/images/sharedimage.jpg" width="600">
 </p>
 
 ---

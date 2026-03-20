@@ -82,7 +82,7 @@ Este projeto demonstra a aplicação prática de conceitos de redes e IoT, utili
 ### 🔹 Hardware
 
 <p align="center">
-<img src="arduino2.jpg" width="600">
+<img src="arduino2.jpg" width="600" height="800">
 </p>
 
 ### 🔹 Montagem

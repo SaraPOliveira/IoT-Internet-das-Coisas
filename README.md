@@ -95,7 +95,7 @@ Foi utilizado um aplicativo de ping para testar a comunicação:
 
 <p align="center">
   <strong>Hardware:</strong><br><br>
-  <img src="Mídia.jpg" alt="Mídia.jpg" width="600">
+  <img src="midia.jpg" alt="Mídia.jpg" width="600">
 </p>
 
 <p align="center">
